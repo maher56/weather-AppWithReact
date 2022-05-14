@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+$main-color: #2196f3;
+:root {
+    --primaryColor: #2196f3;
+    --mainWhite: #fff;
+    --offWhite: #f7f7f7;
+    --mainBlack: #222;
+    --mainGrey: #ececec;
+    --darkGrey: #cfcfcf;
+    --mainTransition: all 0.3s linear;
+    --mainSpacing: 3px;
+    --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+    --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+@mixin sm($direction: "max") {
+    @if $direction == "max"{@media(max-width:575px){@content;}}
+    @else{@media(min-width:576px){@content;}} 
+}
+@mixin md($direction: "max") {
+    @if $direction == "max"{@media(max-width:767px){@content;}}
+    @else{@media(min-width:768px){@content;}} 
+}
+@mixin lg($direction: "max") {
+    @if $direction == "max"{@media(max-width:991px){@content;}}
+    @else{@media(min-width:992px){@content;}} 
+}
+@mixin xl($direction: "max") {
+    @if $direction == "max"{@media(max-width:1199px){@content;}}
+    @else{@media(min-width:1200px){@content;}} 
+}
+@mixin xxl($direction: "max") {
+    @if $direction == "max"{@media(max-width:1399px){@content;}}
+    @else{@media(min-width:1400px){@content;}} 
+}
+@mixin center() {margin-left:auto;margin-right:auto;}
+        
+/* globals */
+body {
+    color: var(--mainBlack);
+    background: #333;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.4;
+}
+h1 {
+    font-size: 3em;
+    line-height: 1;
+    margin-bottom: 0.5em;
+}
+h2 {
+    font-size: 2em;
+    margin-bottom: 0.75em;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1;
+    margin-bottom: 1em;
+}
+h4 {
+    font-size: 1.2em;
+    line-height: 1.25;
+    margin-bottom: 1.25em;
+}
+h5 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 1.5em;
+}
+h6 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 1.5em;
+}
+.root{overflow: hidden;width: 100%;}
+.App {width: 90%;@include center();padding: 2rem;}
+/* end of globals */
+.search-form {
+    display: flex;
+    flex-flow: wrap row;
+    gap: 2rem;
+    justify-content: center;
+    > * {flex-basis: 40%;display: flex;align-items: center;}
+    > *:first-of-type {justify-content: flex-end;}
+    .btn-primary {
+        display: inline-block;
+        text-decoration: none;
+        letter-spacing: var(--mainSpacing);
+        color: #fff;
+        background: $main-color;
+        padding: 0.4rem 0.9rem;
+        border: 3px solid $main-color;
+        transition: var(--mainTransition);
+        text-transform: uppercase;
+        cursor: pointer;
+        &:hover {
+            background: transparent;
+            color: $main-color;
+        }
+    }
+    .form-group {
+        position: relative;
+        .form-control {
+            background-color: transparent;
+            border: 3px solid $main-color;
+            color: #fff;
+            padding: 0.4rem 0.9rem;
+            &:focus{outline: none;}
+        }
+        label {
+            position: absolute;
+            left: 0.9rem;
+            top: .4rem;
+            color: #fff;
+            transition: .3s;
+        }
+        .form-control:focus + label , label.active {
+            color: $main-color;
+            font-size: .8rem;
+            top: -1.1rem;
+            left: .2rem;
+        }
+    }
+}
+.spanier {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+    > div {
+        box-sizing: border-box;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 10px solid #555;
+        border-right-color: $main-color;
+        width: 50px;
+        height: 50px;
+        animation: rotates .9s linear infinite;
+        will-change: transform;
+
+    }
+}
+@keyframes rotates {
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
+.weather-result {
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    color: #eee;
+    .main {
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: $main-color;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    h4{
+        margin-bottom: .6rem;
+    }
+    .subTitle {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        img {
+
+        }
+    }
+    p {
+
+    }
+}
